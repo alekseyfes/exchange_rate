@@ -5,6 +5,6 @@ class ExchangeRateChannel < ApplicationCable::Channel
 
   def current_rate
     rate_getter = ExchangeRateGetter.new
-    transmit rate: rate_getter.call.value
+    transmit rate: rate_getter.call&.value
   end
 end

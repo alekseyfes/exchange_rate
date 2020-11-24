@@ -11,6 +11,7 @@ class ExchangeRateUpdater
     def rate_change_blocked?
       getter = ExchangeRateGetter.new
       current_rate = getter.call
+      return true if current_rate.nil?
       return false if !current_rate.is_manual? || current_rate.expired_date.nil?
 
       DateTime.now < current_rate.expired_date
