@@ -2,3 +2,8 @@
   <%= form.number_field :value, step: 0.1, min: 0, required: true %>
   <%= form.submit 'Установить' %>
 <% end %>
+
+<% @rates.each do |rate| %>
+  <br>
+  <%= "#{rate.created_at}: 1 доллар = #{rate.value} руб." %>
+<% end %>

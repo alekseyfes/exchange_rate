@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   def index
+    @rates = Rate.order(created_at: :desc)
   end
 
   def set_rate
