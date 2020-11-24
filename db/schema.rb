@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_031125) do
+ActiveRecord::Schema.define(version: 2020_11_24_043141) do
 
   create_table "rates", force: :cascade do |t|
     t.string "from"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_031125) do
     t.float "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_manual"
+    t.datetime "expired_date"
   end
 
 end

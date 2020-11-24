@@ -1,9 +1,11 @@
 <%= form_with url: admin_set_rate_path, method: :post, scope: :rate do |form| %>
   <%= form.number_field :value, step: 0.1, min: 0, required: true %>
+  <%= form.datetime_select :expired_date %>
   <%= form.submit 'Установить' %>
 <% end %>
 
 <% @rates.each do |rate| %>
   <br>
   <%= "#{rate.created_at}: 1 доллар = #{rate.value} руб." %>
+  <%= "форс. до #{rate.expired_date}" if rate.is_manual? %>
 <% end %>
