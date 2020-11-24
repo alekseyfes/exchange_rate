@@ -9,7 +9,8 @@ class ExchangeRateUpdater
 
   private
     def get_bank_rate
-      BankRate.get
+      api = BankRateApi.new
+      api.rate
     end
 
     def set_rate
