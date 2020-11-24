@@ -1,11 +1,47 @@
-<%= form_with url: admin_set_rate_path, method: :post, scope: :rate do |form| %>
-  <%= form.number_field :value, step: 0.1, min: 0, required: true %>
-  <%= form.datetime_select :expired_date %>
-  <%= form.submit 'Установить' %>
-<% end %>
+<div class="container">
+  <div class="row row-cols-3">
+    <div class="row col"></div>
+    <div class="row col">
+      <%= form_with url: admin_set_rate_path, method: :post, scope: :rate do |form| %>
+        <div class="form-group">
+          <label>Новый курс доллара к рублю</label>
+          <%= form.number_field :value, step: 0.1, min: 0, required: true, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label>До: </label>
+          <%= form.datetime_select :expired_date, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= form.submit 'Установить', class: 'btn btn-primary' %>
+          <br>
+          <small>После нажатия обновите страницу</small>
+        </div>
+      <% end %>
+    </div>
+    <div class="row col"></div>
+  </div>
+</div>
 
-<% @rates.each do |rate| %>
-  <br>
-  <%= "#{rate.created_at}: 1 доллар = #{rate.value} руб." %>
-  <%= "форс. до #{rate.expired_date}" if rate.is_manual? %>
-<% end %>
+<br>
+<br>
+
+<table class="table">
+  <thread>
+    <tr>
+      <th>Дата установки</th>
+      <th>Курс</th>
+      <th>Установлено в ручную</th>
+      <th>До</th>
+    </tr>
+  </thread>
+  <tbody>
+  <% @rates.each do |rate| %>
+    <tr>
+      <td><%= rate.created_at.strftime('%d-%m-%Y %H:%M:%S') %></td>
+      <td><%= "1$ = #{rate.value}₽" %></td>
+      <td><%= "Да" if rate.is_manual? %></td>
+      <td><%= "#{rate.expired_date&.strftime('%d-%m-%Y %H:%M:%S')}" if rate.is_manual? %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
