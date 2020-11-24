@@ -15,7 +15,7 @@ class ExchangeRateUpdater
 
     def set_rate
       setter = ExchangeRateSetter.new
-      setter.call
+      setter.call(@rate)
     end
 
     def broadcast

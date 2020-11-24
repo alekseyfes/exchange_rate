@@ -1,5 +1,5 @@
 class ExchangeRateGetter
   def call
-    (30..90).to_a.sample  # todo from db
+    Rate.last.value # текущим курсом является последняя запись
   end
 end

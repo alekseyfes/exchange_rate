@@ -1,5 +1,5 @@
 class ExchangeRateSetter
-  def call
-    # todo add to db
+  def call(rate)
+    Rate.create(from: 'usd', to: 'rub', value: rate)
   end
 end
